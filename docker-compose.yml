@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+    roscore:
+        image: osrf/ros:kinetic-desktop-full
+        command: roscore
+
+    rosbridge:
+        build: .
+        image: naosharp
+        command: /start_after_rosmaster.sh roslaunch rosbridge_server rosbridge_websocket.launch
+        ports:
+            - "9090:9090"
+        depends_on:
+            - roscore
+
+    urdf:
+        build: .
+        image: naosharp
+        command: /start_after_rosmaster.sh roslaunch naosharp publish_nao_description.launch
+        environment:
+            - NAO_VERSION=V40
+        depends_on:
+            - roscore

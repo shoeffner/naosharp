@@ -1,0 +1,8 @@
+- git:
+    local-name: ros-sharp
+    uri: https://github.com/siemens/ros-sharp.git
+    version: v1.3
+- git:
+    local-name: nao-robot
+    uri: https://github.com/ros-naoqi/nao_robot.git
+    version: a97a111
