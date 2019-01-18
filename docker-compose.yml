@@ -17,6 +17,8 @@ services:
     urdf:
         build: .
         image: naosharp
+        volumes:
+            - ./naosharp:/catkin_ws/src/naosharp
         command: /start_after_rosmaster.sh roslaunch naosharp publish_nao_description.launch
         environment:
             - NAO_VERSION=V40
