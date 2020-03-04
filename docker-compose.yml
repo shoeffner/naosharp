@@ -14,6 +14,13 @@ services:
         depends_on:
             - roscore
 
+    file_server:
+        build: .
+        image: naosharp
+        command: /start_after_rosmaster.sh roslaunch file_server file_server.launch
+        depends_on:
+            - roscore
+
     urdf:
         build: .
         image: naosharp
