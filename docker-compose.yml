@@ -8,26 +8,24 @@ services:
     rosbridge:
         build: .
         image: naosharp
-        command: /start_after_rosmaster.sh roslaunch rosbridge_server rosbridge_websocket.launch
+        command: /start_after_rosmaster.sh roslaunch file_server ros_sharp_communication.launch
         ports:
             - "9090:9090"
         depends_on:
             - roscore
 
-    file_server:
+    nao_description:
         build: .
         image: naosharp
-        command: /start_after_rosmaster.sh roslaunch file_server file_server.launch
+        command: /start_after_rosmaster.sh roslaunch nao_description robot_state_publisher.launch
         depends_on:
             - roscore
 
-    urdf:
+    naosharp:
         build: .
         image: naosharp
         volumes:
             - ./naosharp:/catkin_ws/src/naosharp
-        command: /start_after_rosmaster.sh roslaunch naosharp publish_nao_description.launch
-        environment:
-            - NAO_VERSION=V40
+        command: /start_after_rosmaster.sh rosrun naosharp scripts/nao_arm_mover.py
         depends_on:
             - roscore

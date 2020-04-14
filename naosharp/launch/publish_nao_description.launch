@@ -1,7 +1,0 @@
-<launch>
-    <include file="$(find file_server)/launch/file_server.launch" />
-    <include file="$(find nao_description)/launch/upload_nao.launch">
-        <arg name="version" default="$(optenv NAO_VERSION V40)" />
-    </include>
-    <param name="robot/name" value="$(optenv ROBOT_NAME Nao)" />
-</launch>
